@@ -63,14 +63,14 @@ struct LoginView: View {
                         self.resetPassword()
                     }, label: {
                         Text("Forgot Password?")
-                            .foregroundColor(Color.gray.opacity(0.5))
+                            .foregroundColor(showingSignup ? .white : Color.gray.opacity(0.5))
                     })
+                    .disabled(showingSignup)
                 }//Fin du HStack
                 
             } .padding(.horizontal, 6)
             //Fin du VStack
             Button(action: {
-
                 self.showingSignup ? self.signUpUser() : self.loginUser()
             }, label: {
                 Text(showingSignup ? "Sign Up" : "Login")

@@ -21,15 +21,16 @@ struct ArticleItem: View {
                             .shadow(radius: 10)
             VStack(alignment: .leading, spacing: 5) {
                             Text(article.name)
-                                .foregroundColor(.primary)
+                                .foregroundColor(ContentView.Colors.secondary)
                                 .font(.headline)
                             Text(article.description)
                                 .font(.subheadline)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.white)
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(3)
                                 .frame(height:40)
                         }
         }
+        .background(ContentView.Colors.primary)
     }
 }

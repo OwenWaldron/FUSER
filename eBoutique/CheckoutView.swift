@@ -17,7 +17,7 @@ struct CheckoutView: View {
     
     var totalPrice: Double
     {
-        let total = basketListener.orderBasket.total
+        let total = basketListener.orderBasket == nil ? 0 : basketListener.orderBasket.total
         let tipValue = total / 100 * Double(Self.tipAmounts[tipAmount])
         return total + tipValue
     }
@@ -32,7 +32,7 @@ struct CheckoutView: View {
                     }
                 }
             }//Fin de la Section 1
-            
+            .foregroundColor(.white)
             
             Section (header: Text("Tip amount?")) {
                 
@@ -44,8 +44,9 @@ struct CheckoutView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }//Fin de la Section 2
+            .foregroundColor(.white)
             
-            Section(header: Text("Total: $\(totalPrice, specifier: "%.2f")").font(.largeTitle)) {
+            Section(header: Text("Total: $\(totalPrice, specifier: "%.2f")").font(.largeTitle).foregroundColor(ContentView.Colors.secondary)) {
                 
                 Button(action: {
                     self.showingPaymentAlert.toggle()
@@ -68,7 +69,7 @@ struct CheckoutView: View {
     
    private func emptyBasket()
    {
-    self.basketListener.orderBasket.emptyBasket()
+        self.basketListener.orderBasket.emptyBasket()
    }
     private func createOrder()
     {
