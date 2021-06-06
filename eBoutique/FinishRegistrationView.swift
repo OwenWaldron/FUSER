@@ -24,24 +24,45 @@ struct FinishRegistrationView: View {
                     .font(.largeTitle)
                     .padding([.top, .bottom], 20)
                 
-                TextField("Name", text: $name)
-                TextField("Surname", text: $surname)
-                TextField("Telephone", text: $telephone)
-                TextField("Address", text: $address)
-                
+                //To make the placeholder text more visible
+                ZStack (alignment: .leading) {
+                    if name.isEmpty {
+                        Text("Name").foregroundColor(ContentView.Colors.tertiary)
+                    }
+                    TextField("", text: $name)
+                }
+                ZStack (alignment: .leading) {
+                    if surname.isEmpty {
+                        Text("Surname").foregroundColor(ContentView.Colors.tertiary)
+                    }
+                    TextField("", text: $surname)
+                }
+                ZStack (alignment: .leading) {
+                    if telephone.isEmpty {
+                        Text("Telephone").foregroundColor(ContentView.Colors.tertiary)
+                    }
+                    TextField("", text: $telephone)
+                }
+                ZStack (alignment: .leading) {
+                    if address.isEmpty {
+                        Text("Address").foregroundColor(ContentView.Colors.tertiary)
+                    }
+                    TextField("", text: $address)
+                }
             } //Fin de Section
+                .foregroundColor(.white)
             Section() {
                 Button(action: {
                     self.finishRegistration()
                 }, label: {
-                    Text("Finish Registration")
+                    Text("Finish Registration").foregroundColor(ContentView.Colors.secondary)
                 })
             }.disabled(!self.fieldsCompleted())
             //Fin de Section
         }//Fin de Form
-        /*.alert(isPresented: $showingAlert) {
+        .alert(isPresented: $showingAlert) {
             Alert(title: Text(alertMessage), dismissButton: .default(Text("OK")))
-        }*/
+        }
     }//Fin de Body
     
     private func fieldsCompleted() -> Bool {

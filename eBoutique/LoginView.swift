@@ -17,9 +17,12 @@ struct LoginView: View {
     @State var repeatPassword = ""
     
     var body: some View {
+        ZStack() {
+        ContentView.Colors.primary.edgesIgnoringSafeArea(.all)
         VStack {
             Text("Sign In")
                 .fontWeight(.heavy)
+                .foregroundColor(.white)
                 .font(.largeTitle)
                 .padding([.bottom, .top], 20)
             VStack(alignment: .leading) {
@@ -27,28 +30,42 @@ struct LoginView: View {
                     Text("Email")
                         .font(.headline)
                         .fontWeight(.light)
-                        .foregroundColor(Color.init(.label))
+                        .foregroundColor(ContentView.Colors.secondary)
                         .opacity(0.75)
-                    TextField("Enter your email", text: $email)
-                    Divider()
+                    ZStack (alignment: .leading) {
+                        if email.isEmpty {
+                            Text("Enter your email").foregroundColor(ContentView.Colors.tertiary)
+                        }
+                        TextField("", text: $email)
+                    }.foregroundColor(.white)
+                    Divider().background(ContentView.Colors.tertiary)
                     Text("Password")
                         .font(.headline)
                         .fontWeight(.light)
-                        .foregroundColor(Color.init(.label))
+                        .foregroundColor(ContentView.Colors.secondary)
                         .opacity(0.75)
-                    
-                    SecureField("Enter your password", text: $password)
-                    Divider()
+                    ZStack (alignment: .leading) {
+                        if password.isEmpty {
+                            Text("Enter your password").foregroundColor(ContentView.Colors.tertiary)
+                        }
+                        SecureField("", text: $password)
+                    }.foregroundColor(.white)
+                    Divider().background(ContentView.Colors.tertiary)
                     
                     if showingSignup {
                         Text("Repeat Password")
                             .font(.headline)
                             .fontWeight(.light)
-                            .foregroundColor(Color.init(.label))
+                            .foregroundColor(ContentView.Colors.secondary)
                             .opacity(0.75)
-                        
-                        SecureField("Repeat password", text: $repeatPassword)
-                        Divider()
+                        Divider().background(ContentView.Colors.tertiary)
+                        ZStack (alignment: .leading) {
+                            if repeatPassword.isEmpty {
+                                Text("Repeeat password").foregroundColor(ContentView.Colors.tertiary)
+                            }
+                            SecureField("", text: $repeatPassword)
+                        }.foregroundColor(.white)
+                        Divider().background(ContentView.Colors.tertiary)
                     }
                 }
                 .padding(.bottom, 15)
@@ -63,7 +80,7 @@ struct LoginView: View {
                         self.resetPassword()
                     }, label: {
                         Text("Forgot Password?")
-                            .foregroundColor(showingSignup ? .white : Color.gray.opacity(0.5))
+                            .foregroundColor(showingSignup ? ContentView.Colors.primary : ContentView.Colors.tertiary)
                     })
                     .disabled(showingSignup)
                 }//Fin du HStack
@@ -91,7 +108,7 @@ struct LoginView: View {
         {
             FinishRegistrationView()
         }
-        
+        }
     }//Fin du body
 
     private func loginUser()
@@ -186,7 +203,7 @@ struct SignUpView : View {
         VStack {
             Spacer()
             HStack(spacing: 8) {
-                Text(showingSignup ? "Already have an account?" : "Don't have an account?")
+                Text(showingSignup ? "Already have an account?" : "Don't have an account?").foregroundColor(.white)
                 Button(action: {
                     self.showingSignup.toggle()
                 }, label: {

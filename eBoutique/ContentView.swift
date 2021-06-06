@@ -23,6 +23,7 @@ struct ContentView: View {
     struct Colors {
         static let primary = Color(red: 0.086, green: 0.153, blue: 0.278)
         static let secondary = Color(red: 0.414, green: 0.796, blue: 0.987)
+        static let tertiary = Color(red: 0.6, green: 0.6, blue: 0.6)
         static let uiprimary = UIColor(red: 0.086, green: 0.153, blue: 0.278, alpha: 1.0)
         static let uitertiary = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.6)
     }
