@@ -58,7 +58,6 @@ struct LoginView: View {
                             .fontWeight(.light)
                             .foregroundColor(ContentView.Colors.secondary)
                             .opacity(0.75)
-                        Divider().background(ContentView.Colors.tertiary)
                         ZStack (alignment: .leading) {
                             if repeatPassword.isEmpty {
                                 Text("Repeeat password").foregroundColor(ContentView.Colors.tertiary)
